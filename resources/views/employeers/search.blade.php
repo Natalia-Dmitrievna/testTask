@@ -18,7 +18,7 @@
         </div>
         <div class="col-xs-2">
           <div class="form-group">
-            <input class="btn btn-info" type="submit" value="Искать">
+            <input class="btn btn-info" type="submit" value="Пошук">
           </div>
         </div>
       </div>
