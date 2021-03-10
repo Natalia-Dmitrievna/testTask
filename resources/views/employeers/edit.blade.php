@@ -1,16 +1,7 @@
 @include('layouts.header')
 
 
-<style>
-
- .text {
-
-  margin-top:40px;
-}
-</style>
-
 <div class="container">
-
  <div class="text">
   <div class="container marginbot-50">
    <div class="row">
