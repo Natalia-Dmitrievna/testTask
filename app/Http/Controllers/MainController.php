@@ -9,18 +9,13 @@ use View;
 
 class MainController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+    
     public function index()
     {
 
-        //$employeers = Employeer::All();
+        
        $employeers = Employeer::leftJoin('department', 'department.dep_id', '=', 'employeer.department_id')->orderBy('id')->paginate(200);
-       //var_dump($employeers);
+      
 
        return view('employeers/main_page', compact('employeers'));
    }
@@ -30,7 +25,6 @@ class MainController extends Controller
 
     $q = $request->input('q');
     $max_page = 200;
-        //Полнотекстовый поиск с пагинацией
     $results = $this->search($q, $max_page);
     return view('employeers/search', [
         'employeers' => $results,
@@ -73,8 +67,7 @@ public function search($q, $count){
             }
         }
         $query = array_unique($query, SORT_STRING);
-        $qQeury = implode(" ", $query); //объединяет массив в строку
-        // Таблица для поиска
+        $qQeury = implode(" ", $query);
         $results = Employeer::whereRaw(
             "MATCH(fname, sname, pname) AGAINST(? IN BOOLEAN MODE)", 
             $qQeury)->paginate($count) ;
@@ -88,12 +81,7 @@ public function search($q, $count){
         return view('employeers/add_empl', compact('departments'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function save(Request $request)
     {
         $this->validate($request, [
